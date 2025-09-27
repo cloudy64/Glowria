@@ -69,13 +69,10 @@ app.get('/', (req, res) => {
   res.send('Welcome to Glowria!'); 
 });
 
-app.get('/', (req, res) => {
-  res.send('Welcome to Glowria!'); 
-});
+
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
 
 
 app.listen(PORT, () => {
