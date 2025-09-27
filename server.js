@@ -12,6 +12,12 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const isSignedIn = require('./middleware/is-signed-in.js');
 const passUserToView = require('./middleware/pass-user-to-view.js');
+const productController=require('./controllers/product.js');
+
+
+
+const path = require('path');
+
 
 // Controllers
 const authController = require('./controllers/auth.js');
@@ -42,6 +48,9 @@ app.use(
 
 // Add user variable to all templates
 app.use(passUserToView);
+app.use('/products',productController);
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // PUBLIC
 app.get('/', (req, res) => {
@@ -55,6 +64,19 @@ app.use('/auth', authController);
 app.get('/vip-lounge', isSignedIn, (req, res) => {
   res.send(`Welcome to the party ${req.session.user.username}.`);
 });
+
+app.get('/', (req, res) => {
+  res.send('Welcome to Glowria!'); 
+});
+
+app.get('/', (req, res) => {
+  res.send('Welcome to Glowria!'); 
+});
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+
 
 app.listen(PORT, () => {
   console.log(`The express app is ready on port ${PORT}!`);

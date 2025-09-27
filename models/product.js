@@ -1,3 +1,4 @@
+const mongoose =require ('mongoose');
 const productSchema= new mongoose.Schema({
   name:String,   //lipstick
   description:String,  //long lasting matte 
