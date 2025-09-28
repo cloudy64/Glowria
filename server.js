@@ -61,9 +61,6 @@ app.use('/auth', authController);
 
 // PROTECTED
 
-app.get('/vip-lounge', isSignedIn, (req, res) => {
-  res.send(`Welcome to the party ${req.session.user.username}.`);
-});
 
 app.get('/', (req, res) => {
   res.send('Welcome to Glowria!'); 
