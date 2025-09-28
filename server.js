@@ -16,6 +16,7 @@ const productController=require('./controllers/product.js');
 
 
 
+
 const path = require('path');
 
 
@@ -66,19 +67,50 @@ app.get('/', (req, res) => {
   res.send('Welcome to Glowria!'); 
 });
 
-
-app.get("/auth/sign-in", (req, res) => {
-  res.render("auth/sign-in");
-});
-
-app.get("/auth/sign-up", (req, res) => {
-  res.render("auth/sign-up");
+app.get("/products", (req, res) => {
+  res.render("index", { products: allProducts }); 
 });
 
 
+app.get("/products", (req, res) => {
+  res.render("products/index", { products });
+});
+
+app.get("/products/:id", (req, res) => {
+  res.render("products/show", { product: {} });
+});
+
+//check this 
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+app.use(express.static("public"));
+
+app.set("views", "views");
+app.set("view engine", "ejs");
+
+
+app.get("/products/:id", (req, res) => {
+  const product = products.find(p => p.id == req.params.id);
+  res.render("products/show", { product });
+});
+
+app.get("/products", (req, res) => {
+  res.render("products/index", { products });
+});
+
+
+
+
+
+app.use('/products', productController);
+
+
+
+
+
+
 
 
 app.listen(PORT, () => {
