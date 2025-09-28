@@ -11,22 +11,48 @@
 <body class="p-4">
   <div class="container">
     <h1 class="mb-4 text-center">All Products</h1>
-    <div class="row g-4"> 
-      
+
+  
+    <div class="filter-container text-center mb-4">
+      <label for="categoryFilter" class="me-2 fw-bold">Filter by Category:</label>
+      <select id="categoryFilter" class="form-select d-inline-block w-auto">
+        <option value="all">All</option>
+        <option value="Makeup">Makeup</option>
+        <option value="Skincare">Skincare</option>
+      </select>
+    </div>
+
+    <div class="row g-4" id="product-list"> 
       <% products.forEach(product => { %>
-        <div class="col-md-4">
+        <div class="col-md-4 product-card" data-category="<%= product.category %>">
           <div class="card h-100">
             <a href="/products/<%= product.id %>">
-            <img src="<%= product.img %>" class="card-img-top" alt="<%= product.name %>">
-            <h5 class="card-title">View Details</h5>
-          </a>
+              <img src="<%= product.img %>" class="card-img-top" alt="<%= product.name %>">
+              <button class="card-title">View Details</button>
+            </a>
           </div>
         </div>
       <% }) %>
-
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const filter = document.getElementById("categoryFilter");
+      const products = document.querySelectorAll(".product-card");
+
+      filter.addEventListener("change", function() {
+        const selected = this.value;
+        products.forEach(card => {
+          if (selected === "all" || card.dataset.category === selected) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>

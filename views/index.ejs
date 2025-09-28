@@ -6,12 +6,11 @@
   <title>Glowria</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="/script.js"></script>
 
-</body>
-</html>
-</head>
+
 <body>
+
+  
          <!-- this is the home page -->
          <header>
           <a href="#" class="logo">G L O W R I A</a>
@@ -25,18 +24,14 @@
             <a href="/auth/sign-up" class="btn">Sign Up</a>
           </div>
         
-          <img src="https://i.pinimg.com/736x/0e/61/fb/0e61fbb74869f93c6cd5f3332683d9cc.jpg" 
-               alt="Glowria Icon" 
-               class="icon">
-        
-        
+          <img src="https://i.pinimg.com/736x/0e/61/fb/0e61fbb74869f93c6cd5f3332683d9cc.jpg"   alt="Glowria Icon"  class="icon">
                
         </header>
 
   <nav>
     <a href="/" class="active">Home</a>
     <a href="/products">Products</a>
-    <a href="#">About</a>
+    <a href="#" id="about-link">About</a>
   </nav>
 
   <div class="main-content">
@@ -45,13 +40,41 @@
     <button class="shop-now" onclick="location.href='/products'">Shop Now →</button>
   </div>
 
-  <div id="about-section" class="hidden">
-    <h2>About Glowria</h2>
+  <section id="about-section" class="about-collapsed" aria-hidden="true">
     <p>
-      Glowria is all about beauty, elegance, and confidence. 
+      Glowria is all about beauty, elegance, and confidence.
       We bring you products that help you shine inside and out ✨
     </p>
-  </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const aboutLink = document.getElementById("about-link");
+      const about = document.getElementById("about-section");
+      if (!aboutLink || !about) return;
+    
+      about.classList.remove("open");
+      about.setAttribute("aria-hidden", "true");
+    
+      aboutLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        const isOpen = about.classList.contains("open");
+        if (!isOpen) {
+          about.classList.add("open");
+          about.setAttribute("aria-hidden", "false");
+          setTimeout(() => {
+            about.scrollIntoView({ behavior: "smooth", block: "start" });
+          }, 60);
+        } else {
+          about.classList.remove("open");
+          about.setAttribute("aria-hidden", "true");
+          setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }, 60);
+        }
+      });
+    });
+    </script>
 
 </body>
 </html>
