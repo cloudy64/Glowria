@@ -67,6 +67,15 @@ app.get('/', (req, res) => {
 });
 
 
+app.get("/auth/sign-in", (req, res) => {
+  res.render("auth/sign-in");
+});
+
+app.get("/auth/sign-up", (req, res) => {
+  res.render("auth/sign-up");
+});
+
+
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));

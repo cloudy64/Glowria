@@ -148,3 +148,12 @@ button.shop-now:hover {
   margin: 30px auto;
   justify-items: center;                 
 }
+
+header .icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 15px;  
+  cursor: pointer;
+}
