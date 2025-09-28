@@ -102,13 +102,7 @@ app.get("/products", (req, res) => {
 
 
 
-
-
 app.use('/products', productController);
-
-
-
-
 
 
 

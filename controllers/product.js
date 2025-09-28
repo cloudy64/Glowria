@@ -8,10 +8,16 @@ router.get("/", (req, res) => {
 });
 
 
-router.get("/:id", (req, res) => {
-  const product = products.find(p => p.id == req.params.id);
-  res.render("products/show", { product });
-});
 
+
+router.get("/:id", async (req, res) => {
+  try {
+    const product = products.find(p => p.id == req.params.id);
+    res.render("products/show", { product });
+  } catch (error) {
+    console.log(error);
+    res.redirect("/products");
+  }
+});
 
 module.exports = router;

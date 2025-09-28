@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -14,13 +13,11 @@ body {
   min-height: 100vh;
 }
 
-
 @keyframes gradientMove {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
 
 header {
   width: 100%;
@@ -38,6 +35,7 @@ header .logo {
   text-decoration: none;
   word-spacing: 5px;
 }
+
 header .search-container {
   flex: 1;
   display: flex;
@@ -52,15 +50,14 @@ header .search-container input {
   outline: none;
 }
 
-
-header .profile-icon {
+header .icon, header .profile-icon {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  margin-left: 15px;
   cursor: pointer;
 }
-
 
 nav {
   width: 100%;
@@ -81,7 +78,6 @@ nav a {
 nav a.active {
   border-bottom: 2px solid #ff69b4;
 }
-
 
 .main-content {
   display: flex;
@@ -142,18 +138,48 @@ button.shop-now:hover {
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 20px;                           
-  max-width: 1100px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
   margin: 30px auto;
-  justify-items: center;                 
+  justify-items: center;
 }
 
-header .icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+.card {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 15px;
+  width: 100%;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
   object-fit: cover;
-  margin-left: 15px;  
-  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  header .search-container input {
+    width: 200px;
+  }
+  .main-content h1 {
+    font-size: 2.2rem;
+  }
 }
