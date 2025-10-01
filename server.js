@@ -1,9 +1,8 @@
 const dotenv = require('dotenv');
-
 dotenv.config();
+
 require('./config/databse.js');
 const express = require('express');
-
 const app = express();
 
 const methodOverride = require('method-override');
@@ -12,30 +11,26 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const isSignedIn = require('./middleware/is-signed-in.js');
 const passUserToView = require('./middleware/pass-user-to-view.js');
-const productController=require('./controllers/product.js');
 
-
-
-
-const path = require('path');
-
-
-// Controllers
+const productController = require('./controllers/product.js');
 const authController = require('./controllers/auth.js');
+const cartController = require('./controllers/cart.js');
 
-// Set the port from environment variable or default to 3000
-const PORT = process.env.PORT ? process.env.PORT : '3000';
+const isAdmin = (req, res, next) => {
+  if (req.session.user && req.session.user.role === 'admin') {
+    return next();
+  }
+  res.status(403).send('Access denied. Admins only.');
+};
+
+// PORT
+const PORT = process.env.PORT || 3000;
 
 // MIDDLEWARE
-//
-// Middleware to parse URL-encoded data from forms
 app.use(express.urlencoded({ extended: false }));
-// Middleware for using HTTP verbs such as PUT or DELETE
 app.use(methodOverride('_method'));
-// Morgan for logging HTTP requests
 app.use(morgan('dev'));
 
-// Session Storage with MongoStore
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -47,66 +42,44 @@ app.use(
   })
 );
 
-// Add user variable to all templates
+// app.use(isSignedIn);
 app.use(passUserToView);
-app.use('/products',productController);
-app.use(express.static(path.join(__dirname, 'public')));
+
+// View engine
+app.set('views', 'views');
+app.set('view engine', 'ejs');
+
+// Static files
+app.use(express.static('public'));
+app.use(passUserToView);
 
 
-// PUBLIC
+// ROUTES
 app.get('/', (req, res) => {
   res.render('index.ejs');
 });
 
+// Auth
 app.use('/auth', authController);
-
-// PROTECTED
-
-
-app.get('/', (req, res) => {
-  res.send('Welcome to Glowria!'); 
-});
-
-app.get("/products", (req, res) => {
-  res.render("index", { products: allProducts }); 
-});
+app.use(isSignedIn);
 
 
-app.get("/products", (req, res) => {
-  res.render("products/index", { products });
-});
+// Products (explicit routes)
+app.use('/products', productController); // list all products
+// app.get('/products/:id', productController.show); // show single product
 
-app.get("/products/:id", (req, res) => {
-  res.render("products/show", { product: {} });
-});
+// Admin-only product routes
+// app.get('/products/new', isAdmin, productController.newForm);
+// app.post('/products', isAdmin, productController.createProduct);
+// app.get('/products/:id/edit', isAdmin, productController.editForm);
+// app.put('/products/:id', isAdmin, productController.updateProduct);
+// app.delete('/products/:id', isAdmin, productController.deleteProduct);
 
-//check this 
+// Cart
+// app.get('/cart/add/:productId', cartController.addToCart);
+// app.get('/cart', cartController.viewCart);
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-
-app.use(express.static("public"));
-
-app.set("views", "views");
-app.set("view engine", "ejs");
-
-
-app.get("/products/:id", (req, res) => {
-  const product = products.find(p => p.id == req.params.id);
-  res.render("products/show", { product });
-});
-
-app.get("/products", (req, res) => {
-  res.render("products/index", { products });
-});
-
-
-
-app.use('/products', productController);
-
-
-
-
+// START SERVER
 app.listen(PORT, () => {
   console.log(`The express app is ready on port ${PORT}!`);
 });

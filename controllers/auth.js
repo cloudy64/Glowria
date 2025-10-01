@@ -31,7 +31,8 @@ router.post('/sign-up', async (req, res) => {
 
   req.session.user = {
     username: newUser.username,
-    _id: newUser._id
+    _id: newUser._id,
+    role: newUser.role || 'user' 
   };
 
   req.session.save(() => {
@@ -52,9 +53,11 @@ router.post('/sign-in', async (req, res) => {
     return res.send('Username or Password is invalid');
   }
 
+
   req.session.user = {
     username: userInDatabase.username,
     _id: userInDatabase._id,
+    Role: userInDatabase.Role || 'user' 
   };
 
   req.session.save(() => {
@@ -67,7 +70,5 @@ router.get("/sign-out", (req, res) => {
     res.redirect("/");
   });
 });
-
-
 
 module.exports = router;

@@ -3,39 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit <%= Products.name %></title>
+    <title>Edit <%= product.name %></title> <!-- fixed: was Products.name -->
   </head>
   <body>
-    <!-- cheeck this finished  -->
-
-  <!-- edit one product -->
-
-
-
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Edit a Products!</h1>
-    <form action="/Products/<%= Products._id %>?_method=PUT" method="POST">
+    <h1>Edit a Product!</h1>
+    <form action="/products/<%= product._id %>?_method=PUT" method="POST"> <!-- fixed URL casing -->
 
-      <label for="name ">name:</label>
-      <input type="text" name="name" id="name" value="<%= products.name %>"/>
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" value="<%= product.name %>"/> <!-- fixed: products → product -->
 
-      <label for="description">description:</label>
-      <input type="text" name="price" id="price" value="<%= products.description %>"/>
+      <label for="description">Description:</label>
+      <input type="text" name="description" id="description" value="<%= product.description %>"/> <!-- fixed name/id -->
 
       <label for="price">Price :</label>
-      <input type="number" name="Price" id="Price" value="<%= products.price %>"/>
-
+      <input type="number" name="price" id="price" value="<%= product.price %>"/> <!-- fixed name/id -->
 
       <label for="brand">Brand:</label>
-      <input type="text" name="Brand" id="Brand" value="<%= products.Brand>"/>
-
+      <input type="text" name="brand" id="brand" value="<%= product.brand %>"/> <!-- fixed value -->
 
       <label for="category">Category:</label>
-      <input type="text" name="Category" id="Category" value="<%= products.Category %>"/>
+      <input type="text" name="category" id="category" value="<%= product.category %>"/> <!-- fixed value -->
 
-
-
-      <button type="submit">Edit Products</button>
+      <button type="submit">Edit Product</button>
     </form>
   </body>
 </html>

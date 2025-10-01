@@ -13,22 +13,25 @@
     <h1>Add New product</h1>
     <form action="/products" method="POST">
      
-      <label for="name ">name:</label>
-      <input type="text" name="name" id="name" value="<%= products.name %>"/>
+      <label for="name">name:</label>
+      <input type="text" name="name" id="name" />
 
       <label for="description">description:</label>
-      <input type="text" name="price" id="price" value="<%= products.description %>"/>
+      <input type="text" name="description" id="description" />
+
+      <label for="image">Image:</label>
+      <input type="text" name="image" id="image" />
 
       <label for="price">Price :</label>
-      <input type="number" name="Price" id="Price" value="<%= products.price %>"/>
+      <input type="number" name="price" id="price" />
 
 
       <label for="brand">Brand:</label>
-      <input type="text" name="Brand" id="Brand" value="<%= products.Brand>"/>
+      <input type="text" name="brand" id="brand" />
 
       
       <label for="category">Category:</label>
-      <input type="text" name="Category" id="Category" value="<%= products.Category %>"/>
+      <input type="text" name="category" id="category" />
 
       <button type="submit">Add Product </button>
 

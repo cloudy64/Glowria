@@ -1,0 +1,22 @@
+<header>
+  <a href="/" class="logo">G L O W R I A</a>
+
+  <div class="search-container">
+    <input type="text" placeholder="🔍 Search...">
+  </div>
+
+  <div class="auth-links">
+    <% if (user) { %>
+
+      <a href="/cart" class="btn">
+        🛒 Cart
+      </a>
+      <span>Hello, <%= user.username %></span>
+      <a href="/auth/sign-out" class="btn">Sign Out</a>
+    <% } else { %>
+  
+      <a href="/auth/sign-in" class="btn">Sign In</a>
+      <a href="/auth/sign-up" class="btn">Sign Up</a>
+    <% } %>
+  </div>
+</header>
