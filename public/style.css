@@ -213,7 +213,7 @@ html {
 }
 
 
-/* === AUTH PAGES === */
+
 .auth-page {
   display: flex;
   align-items: center;
@@ -280,3 +280,29 @@ html {
 .auth-card button:hover {
   background: #e7549e;
 }
+
+
+.btn-secondary {
+  background-color: #373434b6;
+}
+.btn-secondary:hover{
+background-color:rgb(0, 0, 0);
+}
+
+.Add-New-Product{
+  color:#e271a9ae;
+  font-size: 25px;
+  text-decoration: none;
+      
+}
+
+.Add-New-Product:hover{
+  color:#ffffffac;
+}
+
+.mb-4 text-center{
+  font-family:cursive;
+  font-style: italic;
+  color: #cce5ff;
+}
+
