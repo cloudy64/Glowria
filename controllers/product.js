@@ -47,9 +47,9 @@ router.get("/:productId", async (req, res) => {
   }
 });
 
-// // Add to cart
-// const addToCart = async (req, res) => {
-//   if (!req.user) return res.redirect('/auth/sign-in');
+  // Add to cart
+
+
 
 //   const productId = req.params.productId;
 //   const userId = req.user._id;
@@ -117,5 +117,10 @@ router.delete("/:productId", async (req, res) => {
     res.redirect('/products');
   }
 });
+
+
+
+
+
 
 module.exports = router;

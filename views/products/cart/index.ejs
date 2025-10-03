@@ -17,10 +17,9 @@
           <strong><%= item.name %></strong> - <%= item.quantity %> x <%= item.price %> BHD
         </li>
       <% }) %>
-    </ul>
-    <p>Total: <%= cart.orderItems.reduce((acc, item) => acc + item.price * item.quantity, 0) %> BHD</p>
-  <% } else { %>
-    <p>Your cart is empty.</p>
-  <% } %>
+
+    <li><%= item.name %> - $<%= item.price %></li>
+  <% }) %>
+</ul>
 </body>
 </html>

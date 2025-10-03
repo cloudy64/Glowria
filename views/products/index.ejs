@@ -10,7 +10,9 @@
 </head>
 <body class="p-4">
   <div class="container">
+    <% if (user && user.Role === 'admin') { %>
     <a href="/products/new">Add New Product</a>
+    <% } %>
     <h1 class="mb-4 text-center">All Products</h1>
 
     <div class="filter-container text-center mb-4">
@@ -29,7 +31,7 @@
           <div class="card h-100">
             <a href="/products/<%= product._id %>">
 
-            <!-- FIX: use product._id -->
+         
             <a href="/products/<%= product._id %>">
               <img src="<%= product.image %>" class="card-img-top" alt="<%= product.name %>">
             </a>
