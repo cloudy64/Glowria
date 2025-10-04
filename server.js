@@ -14,7 +14,6 @@ const passUserToView = require('./middleware/pass-user-to-view.js');
 
 const productController = require('./controllers/product.js');
 const authController = require('./controllers/auth.js');
-const cartController = require('./controllers/cart.js');
 
 const isAdmin = (req, res, next) => {
   if (req.session.user && req.session.user.role === 'admin') {
@@ -68,16 +67,6 @@ app.use(isSignedIn);
 app.use('/products', productController); // list all products
 // app.get('/products/:id', productController.show); // show single product
 
-// Admin-only product routes
-// app.get('/products/new', isAdmin, productController.newForm);
-// app.post('/products', isAdmin, productController.createProduct);
-// app.get('/products/:id/edit', isAdmin, productController.editForm);
-// app.put('/products/:id', isAdmin, productController.updateProduct);
-// app.delete('/products/:id', isAdmin, productController.deleteProduct);
-
-// Cart
-// app.get('/cart/add/:productId', cartController.addToCart);
-// app.get('/cart', cartController.viewCart);
 
 // START SERVER
 app.listen(PORT, () => {

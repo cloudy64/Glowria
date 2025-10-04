@@ -47,46 +47,6 @@ router.get("/:productId", async (req, res) => {
   }
 });
 
-  // Add to cart
-
-
-
-//   const productId = req.params.productId;
-//   const userId = req.user._id;
-
-//   let cart = await Order.findOne({ userId, status: "cart" });
-//   if (!cart) cart = new Order({ userId, status: "cart", orderItems: [] });
-
-//   cart.orderItems.push(productId);
-//   await cart.save();
-
-//   res.redirect('/cart');
-// };
-
-// // View cart
-// const viewCart = async (req, res) => {
-//   if (!req.user) return res.redirect('/auth/sign-in');
-
-//   const cart = await Order.findOne({ userId: req.user._id, status: "cart" })
-//     .populate('orderItems');
-
-//   res.render('cart/index', { cart });
-// };
-
-// // Admin product functions
-// const newForm = (req, res) => {
-//   res.render('products/new');
-// };
-
-// const createProduct = async (req, res) => {
-//   try {
-//     await Product.create(req.body);
-//     res.redirect('/products');
-//   } catch (error) {
-//     console.error(error);
-//     res.redirect('/products/new');
-//   }
-// };
 
 router.get("/:productId/edit", async (req, res) => {
   try {
